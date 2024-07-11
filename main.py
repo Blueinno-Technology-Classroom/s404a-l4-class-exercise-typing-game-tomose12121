@@ -45,7 +45,8 @@ def update():
     global response
     zombie.animate()
     player.animate()
-    zombie.x -=1
+    if not(player.image in player_die1_img):
+        zombie.x -=1
     if player.image == player_die1_img[-1]:
         player.images = player_idle1_img
         player.fps=20
@@ -53,9 +54,10 @@ def update():
         zombie.right = WIDTH + 100 
         response = ''
     if zombie.collide_pixel(player):
-        zombie.rigth = WIDTH + 100
+        zombie.right = WIDTH + 100
         response = ''
         player.images = player_die1_img
+        player.fps = 5
 
     
 
@@ -69,7 +71,6 @@ def on_key_down(key):
         response = response [0:-1]
 
 
-question = 'Hello World'
 
 def draw():
     screen.clear()
